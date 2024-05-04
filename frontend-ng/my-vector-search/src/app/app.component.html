@@ -1,0 +1,26 @@
+
+<div>
+  <h1>Hello, my vector-search</h1>
+</div>
+
+<div>
+  <label for="dirPath">Local root data path: </label>
+  <input type="text" id="dirPath" [(ngModel)]="dirPath">
+  <button (click)="onSubmit()">Index documents</button>
+</div>
+
+
+<div>
+  <label for="searchterm">Searchterm: </label>
+  <input type="text" id="searchterm" [(ngModel)]="searchterm" (keyup.enter)="search()"> 
+  <button (click)="search()">Search</button>
+</div>
+
+<div>
+  <h3 *ngIf="loading">...Loading...</h3>
+</div>
+
+<div *ngIf="results">
+  <p>found {{results['total']['value']}} results</p>
+  <p *ngFor="let doc of results['hits']">'{{doc.fields.filename}}' with score of {{doc._score}}</p>
+</div>
